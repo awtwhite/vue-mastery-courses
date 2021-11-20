@@ -20,9 +20,12 @@
                     <!-- <p v-if="inStock">In Stock</p>
                     <p v-else>Out of Stock</p> -->
 
+
+
                     <p v-if="inventory > 10">In Stock</p>
                     <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold Out!</p>
                     <p v-else>Out of Stock</p>
+                    <span v-if="onSale">On Sale!</span>
 
                     <p v-show="shouldShow"><code>v-if</code> will add/remove the element from the DOM, where as <code>v-show</code> will just show/hide it from view, which is more performant that adding or removing elements from the DOM.</p>
                 </div>
