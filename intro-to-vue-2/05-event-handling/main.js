@@ -23,6 +23,11 @@ var app = new Vue({
     addToCart: function () {
       this.cart += 1
     },
+    removeToCart: function () {
+      if (this.cart > 0) {
+        this.cart -= 1
+      }
+    },
     // The method below is written with the es6 shorthand. The method above is
     // as the traditional way.
     updateProduct(variantImage) {
