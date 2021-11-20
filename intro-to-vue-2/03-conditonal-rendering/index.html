@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1.0, width=device-width">
+        <title>Product App</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+
+        <div class="nav-bar"></div>
+
+        <div id="app">
+            <div class="product">
+                <div class="product-image">
+                    <img :src="image">
+                </div>
+                <div class="product-info">
+                    <h1>{{ product }}</h1>
+                    <!-- <p v-if="inStock">In Stock</p>
+                    <p v-else>Out of Stock</p> -->
+
+                    <p v-if="inventory > 10">In Stock</p>
+                    <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold Out!</p>
+                    <p v-else>Out of Stock</p>
+
+                    <p v-show="shouldShow"><code>v-if</code> will add/remove the element from the DOM, where as <code>v-show</code> will just show/hide it from view, which is more performant that adding or removing elements from the DOM.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
