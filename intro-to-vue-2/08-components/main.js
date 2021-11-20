@@ -1,3 +1,18 @@
+Vue.component("product-details", {
+  props: {
+    details: {
+      type: String,
+      required: false,
+    },
+  },
+  template: `
+  <p>{{ details }}</p>
+  `,
+  data() {
+    return {}
+  },
+})
+
 Vue.component("product", {
   props: {
     premium: {
