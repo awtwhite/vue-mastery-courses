@@ -16,11 +16,6 @@ Vue.component("product", {
             <h1>{{ title }}</h1>
             <p v-if="inStock">In Stock</p>
             <p v-else>Out of Stock</p>
-            <p>Shipping: {{ shipping }}</p>
-
-            <ul>
-                <li v-for="detail in details">{{ detail }}</li>
-            </ul>
 
             <div v-for="(variant, index) in variants"
                   :key="variant.variantId"
@@ -38,7 +33,7 @@ Vue.component("product", {
                     :class="{ disabledButton: !inStock }">Remove from Cart</button>
         </div>
 
-        <product-tabs :reviews="reviews"></product-tabs>
+        <product-tabs :reviews="reviews" :shipping="shipping" :details="details"></product-tabs>
     </div>
   `,
   data() {
@@ -199,6 +194,14 @@ Vue.component("product-review", {
 
 Vue.component("product-tabs", {
   props: {
+    shipping: {
+      type: String,
+      required: true,
+    },
+    details: {
+      type: Array,
+      required: true,
+    },
     reviews: {
       type: Array,
       required: true,
@@ -211,6 +214,17 @@ Vue.component("product-tabs", {
             v-for="(tab, index) in tabs"
             :key="index"
             @click="selectedTab = tab">{{ tab }}</span>
+
+
+      <div v-show="selectedTab === 'Details'">
+        <ul>
+            <li v-for="detail in details">{{ detail }}</li>
+        </ul>
+      </div>
+
+      <div v-show="selectedTab === 'Shipping'">
+        <p>Shipping: {{ shipping }}</p>
+      </div>
 
       <div v-show="selectedTab === 'Reviews'">
         <h2>Reviews</h2>
@@ -229,8 +243,8 @@ Vue.component("product-tabs", {
   `,
   data() {
     return {
-      tabs: ["Reviews", "Make a Review"],
-      selectedTab: "Reviews",
+      tabs: ["Details", "Shipping", "Reviews", "Make a Review"],
+      selectedTab: "Details",
     }
   },
 })
