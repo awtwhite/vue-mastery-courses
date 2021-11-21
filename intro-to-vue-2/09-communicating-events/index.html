@@ -22,7 +22,10 @@
                 'add-to-cart' event handler which then triggers the 'updateCart'
                 method on the Vue instance.
             -->
-            <product :premium="premium" @add-to-cart="updateCart"></product>
+            <product :premium="premium"
+                     @add-to-cart="updateCart"
+                     @remove-from-cart="removeItemFromCart">
+            </product>
         </div>
 
         <!-- development version, includes helpful console warnings -->

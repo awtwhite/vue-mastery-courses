@@ -30,6 +30,10 @@ Vue.component("product", {
             <button v-on:click="addToCart"
                     :disabled="!inStock"
                     :class="{ disabledButton: !inStock }">Add to Cart</button>
+
+            <button v-on:click="removeFromCart"
+                    :disabled="!inStock"
+                    :class="{ disabledButton: !inStock }">Remove from Cart</button>
         </div>
     </div>
   `,
@@ -66,10 +70,11 @@ Vue.component("product", {
       // See: https://v3.vuejs.org/api/instance-methods.html#emit
       this.$emit("add-to-cart", this.variants[this.selectedVariant].variantId)
     },
-    removeToCart() {
-      if (this.cart > 0) {
-        this.cart -= 1
-      }
+    removeFromCart() {
+      this.$emit(
+        "remove-from-cart",
+        this.variants[this.selectedVariant].variantId
+      )
     },
     updateProduct(index) {
       this.selectedVariant = index
@@ -119,6 +124,14 @@ var app = new Vue({
     // argument into this callback function.
     updateCart(id) {
       this.cart.push(id)
+    },
+    removeItemFromCart(id) {
+      let cart = this.cart
+      for (var i = cart.length - 1; i >= 0; i--) {
+        if (cart[i] === id) {
+          cart.splice(i, 1)
+        }
+      }
     },
   },
 })
