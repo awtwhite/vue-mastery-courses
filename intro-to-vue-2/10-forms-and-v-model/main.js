@@ -44,6 +44,7 @@ Vue.component("product", {
             <p>{{ review.name }}</p>
             <p>{{ review.review }}</p>
             <p>{{ review.rating }}</p>
+            <p>{{ review.recommended }}</p>
             </li>
           </ul>
         </div>
@@ -166,6 +167,19 @@ Vue.component("product-review", {
       </p>
 
       <p>
+        Would you recommend this product<br>
+        <div>
+          <input type="radio" id="yes" name="recommend" value="yes" v-model="recommended">
+          <label for="yes">Yes</label>
+        </div>
+        <div>
+          <input type="radio" id="no" name="recommend" value="no" v-model="recommended">
+          <label for="no">No</label>
+        </div>
+      </p>
+
+
+      <p>
         <input type="submit" value="Submit" />
       </p>
     </form>
@@ -175,6 +189,7 @@ Vue.component("product-review", {
       name: null,
       review: null,
       rating: null,
+      recommended: null,
       errors: [],
     }
   },
@@ -184,11 +199,12 @@ Vue.component("product-review", {
       // showing the previous form submissions errors.
       this.errors.length = 0
 
-      if (this.name && this.review && this.rating) {
+      if (this.name && this.review && this.rating && this.recommended) {
         let productReview = {
           name: this.name,
           review: this.review,
           rating: this.rating,
+          recommended: this.recommended,
         }
 
         this.$emit("review-submitted", productReview)
@@ -196,10 +212,12 @@ Vue.component("product-review", {
         this.name = null
         this.review = null
         this.rating = null
+        this.recommended = null
       } else {
         if (!this.name) this.errors.push("Name required.")
         if (!this.review) this.errors.push("Review required.")
         if (!this.rating) this.errors.push("Rating required.")
+        if (!this.recommended) this.errors.push("Recommendation required.")
       }
     },
   },
