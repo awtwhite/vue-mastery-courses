@@ -7,6 +7,7 @@ import EventShow from './views/EventShow.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history', // Supported by IE10 and up.
   routes: [
     {
       path: '/',
@@ -14,9 +15,10 @@ export default new Router({
       component: EventList
     },
     {
-      path: '/event',
+      path: '/event/:id', // Dynamic route ':id'
       name: 'event-show',
-      component: EventShow
+      component: EventShow,
+      props: true // Pass our dynamic route value as a prop to components.
     },
     {
       path: '/event/create',
