@@ -1,22 +1,22 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link :to="{ name: 'Home' }">Home</router-link> |
-      <router-link :to="{ name: 'About' }">About</router-link>
+      <router-link :to="{ name: 'event-list' }">List</router-link> |
+      <router-link :to="{ name: 'event-show' }">Show Event #1</router-link> |
+      <router-link :to="{ name: 'event-create' }">Create</router-link>
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
-
 #nav {
   padding: 30px;
 }
