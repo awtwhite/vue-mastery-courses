@@ -1,7 +1,8 @@
 <template>
-  <!-- `v-html="svg"` will render what is returned from the computed property 'svg'
-  as the inner HTML of the element -->
-  <div class="icon-wrapper" v-html="svg"></div>
+  <div class="icon-wrapper">
+    <span class="icon-wrapper" v-html="svg"></span>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
