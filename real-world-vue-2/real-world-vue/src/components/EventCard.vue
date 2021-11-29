@@ -1,6 +1,6 @@
 <template>
   <!-- Set the value of our dynamic route via params {} -->
-  <router-link class="event-link" :to="{ name: 'event-show', params: { id: '1'} }">
+  <router-link class="event-link" :to="{ name: 'event-show', params: { id: event.id} }">
     <div class="event-card -shadow">
       <span class="eyebrow">@{{ event.time}} on {{ event.date }}</span>
       <h4 class="title">{{ event.title }}</h4>
@@ -11,19 +11,8 @@
 
 <script>
 export default {
-  data() {
-    return {
-      event: {
-        id: 1,
-        title: 'Park Cleanup',
-        date: 'Tues Aug 19, 2018',
-        time: '6:00',
-        attendees: [
-          { id: 'abd123', name: 'Andrew' },
-          { id: 'def456', name: 'Nozomi' }
-        ]
-      }
-    }
+  props: {
+    event: Object // this 'event' prop is passed to the component from the EventList page.
   }
 }
 </script>
