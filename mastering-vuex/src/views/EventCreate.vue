@@ -6,6 +6,7 @@
     <ul>
       <li v-for="cat in categories" :key="cat">{{ cat }}</li>
     </ul>
+    <p>{{ localComputed }}</p>
   </div>
 </template>
 
@@ -14,16 +15,17 @@
   import { mapState } from 'vuex'
 
   export default {
-    // computed: mapState({
-    //   // passing the string value 'count' is same as `state => state.count`
-    //   // This only work if you are accessing properties that are
-    //   // defined directly on the store state object.
-    //   user: 'user',
-    //   cats: 'categories' // Notice we can rename the reference to our property.
-    // })
-
-    // Using array of strings to access properties directly from store state.
-    // But note, we cannot rename our properties as above (i.e. cat: 'categories)
-    computed: mapState([ 'user', 'categories' ])
+    data() {
+      return {
+        somethingElse: 'Example text here'
+      }
+    },
+    computed: {
+      // Define our local computed properties
+      localComputed() {
+        return this.somethingElse
+      },
+      // Then include our store computed properties
+      ...mapState([ 'user', 'categories' ])}
   }
 </script>
