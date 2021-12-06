@@ -4,7 +4,7 @@
     <h1>Create an Event, {{ user.name }}</h1>
     <p> User ID: {{ user.id }}</p>
     <ul>
-      <li v-for="cat in cats" :key="cat">{{ cat }}</li>
+      <li v-for="cat in categories" :key="cat">{{ cat }}</li>
     </ul>
   </div>
 </template>
@@ -14,12 +14,16 @@
   import { mapState } from 'vuex'
 
   export default {
-    computed: mapState({
-      // passing the string value 'count' is same as `state => state.count`
-      // This only work if you are accessing properties that are
-      // defined directly on the store state object.
-      user: 'user',
-      cats: 'categories' // Notice we can rename the reference to our property.
-    })
+    // computed: mapState({
+    //   // passing the string value 'count' is same as `state => state.count`
+    //   // This only work if you are accessing properties that are
+    //   // defined directly on the store state object.
+    //   user: 'user',
+    //   cats: 'categories' // Notice we can rename the reference to our property.
+    // })
+
+    // Using array of strings to access properties directly from store state.
+    // But note, we cannot rename our properties as above (i.e. cat: 'categories)
+    computed: mapState([ 'user', 'categories' ])
   }
 </script>
