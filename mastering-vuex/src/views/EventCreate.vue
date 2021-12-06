@@ -6,7 +6,7 @@
     <ul>
       <li v-for="cat in categories" :key="cat">{{ cat }}</li>
     </ul>
-    <p>{{ localComputed }}</p>
+    <p>There are {{ catLength }} categories</p>
   </div>
 </template>
 
@@ -21,11 +21,10 @@
       }
     },
     computed: {
-      // Define our local computed properties
-      localComputed() {
-        return this.somethingElse
+      catLength() {
+        // return this.$store.state.categories.length // Getting length of store property directly
+        return this.$store.getters.catLength // Getting length from our store getter
       },
-      // Then include our store computed properties
       ...mapState([ 'user', 'categories' ])}
   }
 </script>

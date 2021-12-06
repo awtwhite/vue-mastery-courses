@@ -17,5 +17,13 @@ export default new Vuex.Store({
     ]
   },
   mutations: {},
-  actions: {}
+  actions: {},
+  getters: {
+    // Setup a getter to get the length of our categories.
+    // This can be accessed form any component in our app as its stored
+    // on our store!
+    catLength: state => {
+      return state.categories.length
+    }
+  }
 })
