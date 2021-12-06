@@ -1,3 +1,3 @@
 <template>
-  <h1>Create Event</h1>
+  <h1>Create Event, {{ $store.state.user }}</h1>
 </template>
