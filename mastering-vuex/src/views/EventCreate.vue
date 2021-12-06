@@ -1,9 +1,11 @@
 <template>
   <div>
-    <h1>Create an Event, {{ userName }}</h1>
-    <p> This event was created by {{ userName }}</p>
-    <p> User ID: {{ userId }}</p>
-    <p> Event categories: {{ categories }}</p>
+    <!-- Using dot notation to access the props from the 'user' -->
+    <h1>Create an Event, {{ user.name }}</h1>
+    <p> User ID: {{ user.id }}</p>
+    <ul>
+      <li v-for="cat in cats" :key="cat">{{ cat }}</li>
+    </ul>
   </div>
 </template>
 
@@ -13,10 +15,11 @@
 
   export default {
     computed: mapState({
-      // arrow functions can make the code very succinct!
-      userName: state => state.user.name,
-      userId: state => state.user.id,
-      categories: state => state.categories
+      // passing the string value 'count' is same as `state => state.count`
+      // This only work if you are accessing properties that are
+      // defined directly on the store state object.
+      user: 'user',
+      cats: 'categories' // Notice we can rename the reference to our property.
     })
   }
 </script>
