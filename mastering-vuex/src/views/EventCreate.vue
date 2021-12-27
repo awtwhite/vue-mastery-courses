@@ -11,20 +11,21 @@
 </template>
 
 <script>
-  // See https://vuex.vuejs.org/guide/state.html#the-mapstate-helper
-  import { mapState } from 'vuex'
+// See https://vuex.vuejs.org/guide/state.html#the-mapstate-helper
+import { mapState } from 'vuex'
 
-  export default {
-    data() {
-      return {
-        somethingElse: 'Example text here'
-      }
+export default {
+  data() {
+    return {
+      somethingElse: 'Example text here'
+    }
+  },
+  computed: {
+    catLength() {
+      // return this.$store.state.categories.length // Getting length of store property directly
+      return this.$store.getters.catLength // Getting length from our store getter
     },
-    computed: {
-      catLength() {
-        // return this.$store.state.categories.length // Getting length of store property directly
-        return this.$store.getters.catLength // Getting length from our store getter
-      },
-      ...mapState([ 'user', 'categories' ])}
+    ...mapState(['user', 'categories'])
   }
+}
 </script>
