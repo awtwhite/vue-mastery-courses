@@ -20,6 +20,12 @@ export default new Vuex.Store({
       { id: 2, text: '...', done: false },
       { id: 3, text: '...', done: true },
       { id: 4, text: '...', done: false }
+    ],
+    events: [
+      { id: 1, title: '...', organizer: '...' },
+      { id: 2, title: '...', organizer: '...' },
+      { id: 3, title: '...', organizer: '...' },
+      { id: 4, title: '...', organizer: '...' }
     ]
   },
   mutations: {},
@@ -34,9 +40,11 @@ export default new Vuex.Store({
     doneTodos: state => {
       return state.todos.filter(todo => todo.done)
     },
-    // Below we pass in the getters object to be able to use it inside a getter method.
-    activeTodosCount: (state, getters) => {
-      return state.todos.length - getters.doneTodos.length
+    activeTodosCount: state => {
+      return state.todos.filter(todo => !todo.done).length
+    },
+    getEventById: state => id => {
+      return state.events.find(event => event.id === id)
     }
   }
 })

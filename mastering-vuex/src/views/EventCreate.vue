@@ -7,6 +7,7 @@
       <li v-for="cat in categories" :key="cat">{{ cat }}</li>
     </ul>
     <p>There are {{ catLength }} categories</p>
+    <p>{{ getEvent(1) }}</p>
   </div>
 </template>
 
@@ -21,6 +22,9 @@ export default {
     }
   },
   computed: {
+    getEvent() {
+      return this.$store.getters.getEventById
+    },
     catLength() {
       // return this.$store.state.categories.length // Getting length of store property directly
       return this.$store.getters.catLength // Getting length from our store getter
